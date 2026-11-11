@@ -1,0 +1,21 @@
+# Compiled output
+target/
+*.class
+
+# IntelliJ / STS
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.classpath
+.project
+.factorypath
+
+# Local configuration containing real secrets (do not commit)
+src/main/resources/application-local.properties
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

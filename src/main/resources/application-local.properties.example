@@ -1,0 +1,12 @@
+
+# Copy to application-local.properties and fill in your local values.
+DB_URL=jdbc:postgresql://localhost:5432/chronis-dev
+DB_USERNAME=postgres
+DB_PASSWORD=replace-with-local-password
+JWT_SECRET=replace-with-a-random-secret-at-least-32-characters-long
+CHRONIS_BOOTSTRAP_PASSWORD=choose-a-local-password-at-least-12-characters
+# Optional provider settings: GOOGLE_SERVER_CLIENT_ID, GOOGLE_ANDROID_CLIENT_ID,
+# GOOGLE_CLIENT_SECRET (server-side only; unused by ID-token sign-in),
+# FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, SMTP_HOST, SMTP_PORT, SMTP_USERNAME,
+# SMTP_PASSWORD, SMTP_AUTH, SMTP_STARTTLS, EMAIL_VERIFICATION_ENABLED,
+# EMAIL_VERIFICATION_FROM. Phone verification is not required.

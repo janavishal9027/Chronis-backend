@@ -1,0 +1,360 @@
+table_name,column_name,data_type,is_nullable,default_value,decision,reason,evidence
+attendance_adjustments,id,bigint,NO,nextval('attendance_adjustments_id_seq'::regclass),remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,attendance_session_id,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,employee_id,bigint,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,requested_by,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,adjustment_type,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,old_value,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,new_value,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,reason,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,status,character varying,NO,'PENDING'::character varying,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,approved_by,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_adjustments,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+attendance_sessions,id,bigint,NO,nextval('attendance_sessions_id_seq'::regclass),retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,employee_id,bigint,NO,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,work_date,date,NO,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,check_in_time,timestamp with time zone,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,check_out_time,timestamp with time zone,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,status,character varying,NO,'ABSENT'::character varying,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,attendance_duration_minutes,bigint,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,break_duration_minutes,bigint,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,net_working_duration_minutes,bigint,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,overtime_duration_minutes,bigint,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,scheduled_duration_minutes,bigint,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,is_late,boolean,NO,false,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,early_departure,boolean,NO,false,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,correction_requested,boolean,NO,false,remove if unused,No active screen or business logic uses this field; migration blocks removal when it contains meaningful data.,com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,correction_approved_by,bigint,YES,,remove if unused,No active screen or business logic uses this field; migration blocks removal when it contains meaningful data.,com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,deleted_at,timestamp with time zone,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/engineering/StudyService.java; com/chronis/attendance/domain/AttendanceSession.java
+attendance_sessions,created_by,character varying,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+attendance_sessions,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+attendance_sessions,updated_by,character varying,YES,,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+attendance_sessions,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java
+attendance_sessions,version,bigint,NO,0,retain,"Attendance and check-in/out state, or JPA audit/version metadata.",com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java
+audit_logs,id,bigint,NO,nextval('audit_logs_id_seq'::regclass),remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,employee_id,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,action,character varying,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,entity_type,character varying,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,entity_id,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,old_values,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,new_values,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,ip_address,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/audit/domain/AuditLog.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,version,bigint,NO,0,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,created_by,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,updated_by,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+audit_logs,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+break_sessions,id,bigint,NO,nextval('break_sessions_id_seq'::regclass),retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,attendance_session_id,bigint,NO,,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,break_type,character varying,NO,'SHORT'::character varying,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,start_time,timestamp with time zone,NO,,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,end_time,timestamp with time zone,YES,,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,duration_minutes,bigint,YES,,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,reason,character varying,YES,,retain,Break recording and attendance calculations.,com/chronis/breakmanagement/domain/BreakSession.java
+break_sessions,created_by,character varying,YES,,retain,Break recording and attendance calculations.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+break_sessions,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Break recording and attendance calculations.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+break_sessions,updated_by,character varying,YES,,retain,Break recording and attendance calculations.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+break_sessions,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Break recording and attendance calculations.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+break_sessions,version,bigint,NO,0,retain,Break recording and attendance calculations.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+configuration,id,bigint,NO,nextval('configuration_id_seq'::regclass),retain,Attendance schedule target configuration and its metadata.,com/chronis/configuration/DataSeeder.java; com/chronis/attendance/service/ScheduledMinutesService.java; com/chronis/auth/security/SecurityConfig.java; com/chronis/auth/service/FacebookAuthenticationService.java
+configuration,key,character varying,NO,,retain,Attendance schedule target configuration and its metadata.,com/chronis/attendance/service/ScheduledMinutesService.java; com/chronis/auth/service/GoogleAuthenticationService.java; com/chronis/configuration/domain/Configuration.java; com/chronis/configuration/repository/ConfigurationRepository.java
+configuration,value,character varying,YES,,retain,Attendance schedule target configuration and its metadata.,com/chronis/attendance/service/ScheduledMinutesService.java; com/chronis/configuration/domain/Configuration.java
+configuration,description,character varying,YES,,retain,Attendance schedule target configuration and its metadata.,com/chronis/configuration/DataSeeder.java; com/chronis/configuration/domain/Configuration.java
+configuration,created_by,character varying,YES,,retain,Attendance schedule target configuration and its metadata.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+configuration,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Attendance schedule target configuration and its metadata.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+configuration,updated_by,character varying,YES,,retain,Attendance schedule target configuration and its metadata.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+configuration,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Attendance schedule target configuration and its metadata.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+configuration,version,bigint,NO,0,retain,Attendance schedule target configuration and its metadata.,com/chronis/auth/service/FacebookAuthenticationService.java
+daily_reports,id,bigint,NO,nextval('daily_reports_id_seq'::regclass),retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,employee_id,bigint,NO,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,report_date,date,NO,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,attendance_hours,double precision,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,break_hours,double precision,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,net_working_hours,double precision,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,overtime_hours,double precision,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,completed_work,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,in_progress_work,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,pending_work,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,blockers_challenges,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,tomorrow_plans,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,status,character varying,NO,'DRAFT'::character varying,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,manager_feedback,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,reviewed_by,bigint,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,reviewed_at,timestamp without time zone,YES,,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,revision_number,integer,NO,0,retain,The reachable daily-reports screen.,com/chronis/dailyreport/domain/DailyReport.java
+daily_reports,created_by,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+daily_reports,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable daily-reports screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+daily_reports,updated_by,character varying,YES,,retain,The reachable daily-reports screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+daily_reports,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable daily-reports screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+daily_reports,version,bigint,NO,0,retain,The reachable daily-reports screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+employees,id,bigint,NO,nextval('employees_id_seq'::regclass),retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java; com/chronis/breakmanagement/service/BreakService.java; com/chronis/common/security/AccessScope.java; com/chronis/employee/controller/EmployeeController.java
+employees,user_id,bigint,NO,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/domain/Employee.java
+employees,employee_id,character varying,NO,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java; com/chronis/common/security/AccessScope.java; com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,first_name,character varying,NO,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,last_name,character varying,NO,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,email,character varying,NO,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,phone,character varying,YES,,remove if unused,No active screen or business logic uses this field; migration blocks removal when it contains meaningful data.,com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,designation,character varying,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,hire_date,date,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,status,character varying,NO,'ACTIVE'::character varying,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java; com/chronis/common/security/AccessScope.java; com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,profile_picture_url,character varying,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,timezone,character varying,NO,'Asia/Kolkata'::character varying,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/breakmanagement/service/BreakService.java; com/chronis/employee/controller/EmployeeController.java; com/chronis/employee/domain/Employee.java
+employees,deleted_at,timestamp with time zone,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java; com/chronis/common/security/AccessScope.java; com/chronis/employee/domain/Employee.java
+employees,created_by,character varying,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+employees,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+employees,updated_by,character varying,YES,,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+employees,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java
+employees,version,bigint,NO,0,retain,"Signed-in profile, account ownership, timezone and access control.",com/chronis/engineering/StudyService.java
+engineering_client_records,employee_id,bigint,NO,,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_records,record_type,character varying,NO,,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_records,record_key,character varying,NO,,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_records,version,bigint,NO,1,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_records,payload,jsonb,NO,,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_records,updated_at,timestamp with time zone,NO,,retain,"Projects, carryover, leave, interviewer settings and sessions.",com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,id,bigint,NO,nextval('engineering_client_revisions_id_seq'::regclass),retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,employee_id,bigint,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,record_type,character varying,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,record_key,character varying,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,version,bigint,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,payload,jsonb,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_client_revisions,recorded_at,timestamp with time zone,NO,,retain,Project and coaching revision history.,com/chronis/coaching/CoachingStore.java
+engineering_events,id,bigint,NO,nextval('engineering_events_id_seq'::regclass),retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_events,employee_id,bigint,NO,,retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_events,event_type,character varying,NO,,retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_events,work_date,date,NO,,retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_events,detail,character varying,NO,,retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_events,recorded_at,timestamp with time zone,NO,,retain,Study attendance and work event history.,com/chronis/engineering/EngineeringPolicy.java
+engineering_report_submissions,id,bigint,NO,nextval('engineering_report_submissions_id_seq'::regclass),retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,employee_id,bigint,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,plan_id,character varying,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,day_number,integer,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,version,integer,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,payload,jsonb,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_report_submissions,submitted_at,timestamp with time zone,NO,,retain,Daily report versions and progress.,com/chronis/coaching/PracticeService.java; com/chronis/engineering/StudyService.java
+engineering_work,id,bigint,NO,nextval('engineering_work_id_seq'::regclass),retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,employee_id,bigint,NO,,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,plan_id,character varying,NO,,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,day_number,integer,NO,,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,domain,character varying,NO,,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,version,bigint,NO,1,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,payload,jsonb,NO,,retain,Saved work per study domain.,com/chronis/coaching/PracticeService.java; com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/EngineeringPolicy.java; com/chronis/engineering/StudyService.java
+engineering_work,updated_at,timestamp with time zone,NO,,retain,Saved work per study domain.,com/chronis/coaching/StudyWorkspaceService.java; com/chronis/engineering/StudyService.java; com/chronis/engineering/WorkspaceRecords.java
+engineering_work_revisions,id,bigint,NO,nextval('engineering_work_revisions_id_seq'::regclass),retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,work_id,bigint,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,employee_id,bigint,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,mutation_id,uuid,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,version,bigint,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,payload,jsonb,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_work_revisions,recorded_at,timestamp with time zone,NO,,retain,Work revision history and idempotent saves.,com/chronis/engineering/StudyService.java
+engineering_workspace_records,employee_id,bigint,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+engineering_workspace_records,record_type,character varying,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+engineering_workspace_records,record_key,character varying,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+engineering_workspace_records,version,bigint,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+engineering_workspace_records,payload,jsonb,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+engineering_workspace_records,updated_at,timestamp with time zone,NO,,retain,"Synced drafts, timer, rhythm, preferences and reminder activity.",com/chronis/engineering/WorkspaceRecords.java
+flyway_schema_history,installed_rank,integer,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,version,character varying,YES,,retain,Flyway migration history and checksums.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); Flyway migration metadata
+flyway_schema_history,description,character varying,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,type,character varying,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,script,character varying,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,checksum,integer,YES,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,installed_by,character varying,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,installed_on,timestamp without time zone,NO,now(),retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,execution_time,integer,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+flyway_schema_history,success,boolean,NO,,retain,Flyway migration history and checksums.,Flyway migration metadata
+holidays,id,bigint,NO,nextval('holidays_id_seq'::regclass),remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+holidays,name,character varying,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+holidays,holiday_date,date,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+holidays,type,character varying,NO,'PUBLIC'::character varying,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+holidays,description,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+holidays,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,id,bigint,NO,nextval('leave_records_id_seq'::regclass),remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,employee_id,bigint,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,leave_type,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,start_date,date,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,end_date,date,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,status,character varying,NO,'PENDING'::character varying,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,reason,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,approved_by,bigint,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+leave_records,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+manager_employee_access,manager_id,bigint,NO,,retain,Existing manager-to-employee authorization.,com/chronis/common/security/AccessScope.java
+manager_employee_access,employee_id,bigint,NO,,retain,Existing manager-to-employee authorization.,com/chronis/common/security/AccessScope.java
+notifications,id,bigint,NO,nextval('notifications_id_seq'::regclass),retain,The reachable notifications screen.,com/chronis/notification/controller/NotificationController.java; com/chronis/notification/domain/Notification.java
+notifications,recipient_id,bigint,NO,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,sender_id,bigint,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,title,character varying,NO,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,body,character varying,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,type,character varying,NO,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,related_entity_type,character varying,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,related_entity_id,bigint,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,read_status,character varying,NO,'UNREAD'::character varying,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,read_at,timestamp with time zone,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,scheduled_for,timestamp with time zone,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,sent_at,timestamp with time zone,YES,,retain,The reachable notifications screen.,com/chronis/notification/domain/Notification.java
+notifications,created_by,character varying,YES,,retain,The reachable notifications screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+notifications,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable notifications screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+notifications,updated_by,character varying,YES,,retain,The reachable notifications screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+notifications,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable notifications screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+notifications,version,bigint,NO,0,retain,The reachable notifications screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+permissions,id,bigint,NO,nextval('permissions_id_seq'::regclass),retain,Role and permission authorization.,com/chronis/auth/domain/Role.java; com/chronis/auth/security/CustomUserDetailsService.java
+permissions,code,character varying,NO,,retain,Role and permission authorization.,com/chronis/auth/domain/Permission.java
+permissions,description,character varying,YES,,retain,Role and permission authorization.,com/chronis/auth/domain/Permission.java; com/chronis/auth/domain/Role.java
+permissions,created_by,character varying,YES,,retain,Role and permission authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+permissions,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Role and permission authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+permissions,updated_by,character varying,YES,,retain,Role and permission authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+permissions,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Role and permission authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+permissions,version,bigint,NO,0,retain,Role and permission authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+project_members,id,bigint,NO,nextval('project_members_id_seq'::regclass),retain,Project membership and authorization.,com/chronis/project/domain/ProjectMember.java
+project_members,project_id,bigint,NO,,retain,Project membership and authorization.,com/chronis/project/domain/ProjectMember.java
+project_members,employee_id,bigint,NO,,retain,Project membership and authorization.,com/chronis/project/domain/ProjectMember.java
+project_members,role_in_project,character varying,YES,,retain,Project membership and authorization.,com/chronis/project/domain/ProjectMember.java
+project_members,assigned_at,timestamp with time zone,YES,,retain,Project membership and authorization.,com/chronis/project/domain/ProjectMember.java
+project_members,created_by,character varying,YES,,retain,Project membership and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+project_members,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Project membership and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+project_members,updated_by,character varying,YES,,retain,Project membership and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+project_members,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Project membership and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+project_members,version,bigint,NO,0,retain,Project membership and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+projects,id,bigint,NO,nextval('projects_id_seq'::regclass),retain,The reachable project and work-update screens.,com/chronis/coaching/ProjectWorkspaceController.java; com/chronis/engineering/StudyService.java; com/chronis/project/controller/ProjectController.java; com/chronis/project/domain/Project.java
+projects,project_code,character varying,NO,,retain,The reachable project and work-update screens.,com/chronis/project/domain/Project.java
+projects,name,character varying,NO,,retain,The reachable project and work-update screens.,com/chronis/engineering/StudyService.java; com/chronis/project/controller/ProjectController.java; com/chronis/project/domain/Project.java
+projects,description,character varying,YES,,retain,The reachable project and work-update screens.,com/chronis/project/controller/ProjectController.java; com/chronis/project/domain/Project.java
+projects,project_manager_id,bigint,YES,,retain,The reachable project and work-update screens.,com/chronis/project/domain/Project.java
+projects,start_date,date,YES,,retain,The reachable project and work-update screens.,com/chronis/project/domain/Project.java
+projects,target_completion_date,date,YES,,retain,The reachable project and work-update screens.,com/chronis/project/domain/Project.java
+projects,status,character varying,NO,'ACTIVE'::character varying,retain,The reachable project and work-update screens.,com/chronis/engineering/StudyService.java; com/chronis/project/domain/Project.java; com/chronis/workupdate/service/WorkUpdateService.java
+projects,priority,character varying,YES,,retain,The reachable project and work-update screens.,com/chronis/project/domain/Project.java
+projects,created_by,character varying,YES,,retain,The reachable project and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+projects,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable project and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+projects,updated_by,character varying,YES,,retain,The reachable project and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+projects,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable project and work-update screens.,com/chronis/engineering/StudyService.java
+projects,version,bigint,NO,0,retain,The reachable project and work-update screens.,com/chronis/engineering/StudyService.java
+refresh_tokens,id,bigint,NO,nextval('refresh_tokens_id_seq'::regclass),retain,Session refresh and revocation.,com/chronis/auth/domain/RefreshToken.java
+refresh_tokens,user_id,bigint,NO,,retain,Session refresh and revocation.,com/chronis/auth/domain/RefreshToken.java
+refresh_tokens,token,character varying,NO,,retain,Session refresh and revocation.,com/chronis/auth/domain/RefreshToken.java
+refresh_tokens,expiry_date,timestamp with time zone,NO,,retain,Session refresh and revocation.,com/chronis/auth/domain/RefreshToken.java
+refresh_tokens,revoked,boolean,NO,false,retain,Session refresh and revocation.,com/chronis/auth/domain/RefreshToken.java
+refresh_tokens,created_by,character varying,YES,,retain,Session refresh and revocation.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+refresh_tokens,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Session refresh and revocation.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+refresh_tokens,updated_by,character varying,YES,,retain,Session refresh and revocation.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+refresh_tokens,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Session refresh and revocation.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+refresh_tokens,version,bigint,NO,0,retain,Session refresh and revocation.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+retired_feature_records,source_table,character varying,NO,,retain,Preserved records from previously retired tables.,Reviewed as part of table contract; retained conservatively.
+retired_feature_records,source_id,bigint,NO,,retain,Preserved records from previously retired tables.,Reviewed as part of table contract; retained conservatively.
+retired_feature_records,payload,jsonb,NO,,retain,Preserved records from previously retired tables.,Reviewed as part of table contract; retained conservatively.
+retired_feature_records,archived_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Preserved records from previously retired tables.,Reviewed as part of table contract; retained conservatively.
+role_permissions,role_id,bigint,NO,,retain,Role and permission authorization.,com/chronis/auth/domain/Role.java
+role_permissions,permission_id,bigint,NO,,retain,Role and permission authorization.,com/chronis/auth/domain/Role.java
+roles,id,bigint,NO,nextval('roles_id_seq'::regclass),retain,Account roles and authorization.,com/chronis/auth/domain/Role.java; com/chronis/auth/domain/User.java; com/chronis/auth/dto/LoginResponse.java; com/chronis/auth/security/JwtService.java
+roles,name,character varying,NO,,retain,Account roles and authorization.,com/chronis/auth/domain/Role.java; com/chronis/auth/domain/User.java; com/chronis/auth/dto/LoginResponse.java; com/chronis/auth/security/JwtService.java
+roles,description,character varying,YES,,retain,Account roles and authorization.,com/chronis/auth/domain/Role.java
+roles,created_by,character varying,YES,,retain,Account roles and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+roles,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Account roles and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+roles,updated_by,character varying,YES,,retain,Account roles and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+roles,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Account roles and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+roles,version,bigint,NO,0,retain,Account roles and authorization.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+signup_email_verifications,id,uuid,NO,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java; com/chronis/auth/repository/SignupEmailVerificationRepository.java
+signup_email_verifications,email,character varying,NO,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java; com/chronis/auth/repository/SignupEmailVerificationRepository.java
+signup_email_verifications,code_hash,character varying,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,code_expires_at,timestamp with time zone,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,verified_at,timestamp with time zone,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,token_hash,character varying,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,proof_expires_at,timestamp with time zone,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,sent_at,timestamp with time zone,YES,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,window_started_at,timestamp with time zone,NO,,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java; com/chronis/auth/repository/SignupEmailVerificationRepository.java
+signup_email_verifications,send_count,integer,NO,0,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,attempts,integer,NO,0,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+signup_email_verifications,consumed,boolean,NO,false,retain,Email signup verification and replay protection.,com/chronis/auth/domain/SignupEmailVerification.java
+task_comments,id,bigint,NO,nextval('task_comments_id_seq'::regclass),remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/task/domain/TaskComment.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,task_id,bigint,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/task/domain/TaskComment.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,employee_id,bigint,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/task/domain/TaskComment.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,comment,character varying,NO,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/task/domain/TaskComment.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/task/domain/TaskComment.java; src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,created_by,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,updated_by,character varying,YES,,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+task_comments,version,bigint,NO,0,remove if empty,Legacy table has no active frontend or backend caller; migration blocks removal if any records exist.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable); src/main/resources/db/migration/V1__initial_schema.sql (legacy schema)
+tasks,id,bigint,NO,nextval('tasks_id_seq'::regclass),retain,The reachable tasks and work-update screens.,com/chronis/task/controller/TaskController.java; com/chronis/task/domain/Task.java; com/chronis/workupdate/service/WorkUpdateService.java
+tasks,task_code,character varying,NO,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,title,character varying,NO,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,description,character varying,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/controller/TaskController.java; com/chronis/task/domain/Task.java
+tasks,project_id,bigint,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java; com/chronis/workupdate/service/WorkUpdateService.java
+tasks,assigned_to,bigint,NO,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java; com/chronis/workupdate/service/WorkUpdateService.java
+tasks,assigned_by,bigint,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,parent_task_id,bigint,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,priority,character varying,NO,'MEDIUM'::character varying,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,status,character varying,NO,'NOT_STARTED'::character varying,retain,The reachable tasks and work-update screens.,com/chronis/task/controller/TaskController.java; com/chronis/task/domain/Task.java; com/chronis/workupdate/service/WorkUpdateService.java
+tasks,planned_start_date,date,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,deadline,date,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,estimated_duration_minutes,bigint,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,actual_time_spent_minutes,bigint,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,progress_percentage,integer,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java; com/chronis/workupdate/service/WorkUpdateService.java
+tasks,completion_percentage,integer,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,completed_at,timestamp without time zone,YES,,retain,The reachable tasks and work-update screens.,com/chronis/task/domain/Task.java
+tasks,created_by,character varying,YES,,retain,The reachable tasks and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+tasks,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable tasks and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+tasks,updated_by,character varying,YES,,retain,The reachable tasks and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+tasks,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable tasks and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+tasks,version,bigint,NO,0,retain,The reachable tasks and work-update screens.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+user_roles,user_id,bigint,NO,,retain,User role assignments.,com/chronis/auth/domain/User.java
+user_roles,role_id,bigint,NO,,retain,User role assignments.,com/chronis/auth/domain/User.java
+users,id,bigint,NO,nextval('users_id_seq'::regclass),retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java; com/chronis/auth/service/SignupEmailVerificationService.java
+users,username,character varying,NO,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email,character varying,NO,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java; com/chronis/auth/service/SignupEmailVerificationService.java
+users,password,character varying,NO,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java; com/chronis/auth/service/SignupEmailVerificationService.java
+users,enabled,boolean,NO,true,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,account_non_expired,boolean,NO,true,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,account_non_locked,boolean,NO,true,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,credentials_non_expired,boolean,NO,true,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,password_changed_at,timestamp with time zone,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,created_by,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+users,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+users,updated_by,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+users,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+users,version,bigint,NO,0,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+users,first_name,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,last_name,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,password_reset_token,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,password_reset_token_expiry,timestamp with time zone,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email_verified,boolean,NO,true,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email_verification_code_hash,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email_verification_code_expiry,timestamp with time zone,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email_verification_sent_at,timestamp with time zone,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,email_verification_attempts,integer,NO,0,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,google_subject,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+users,facebook_subject,character varying,YES,,retain,"Email/password, Google and Facebook authentication and account security.",com/chronis/auth/domain/User.java
+work_sessions,id,bigint,NO,nextval('work_sessions_id_seq'::regclass),retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,employee_id,bigint,NO,,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,session_start,timestamp with time zone,NO,,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,session_end,timestamp with time zone,YES,,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,elapsed_duration_minutes,bigint,YES,,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,productive_duration_minutes,bigint,YES,,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,status,character varying,NO,'ACTIVE'::character varying,retain,Attendance session tracking.,com/chronis/worksession/domain/WorkSession.java
+work_sessions,created_by,character varying,YES,,retain,Attendance session tracking.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_sessions,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Attendance session tracking.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_sessions,updated_by,character varying,YES,,retain,Attendance session tracking.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_sessions,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,Attendance session tracking.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_sessions,version,bigint,NO,0,retain,Attendance session tracking.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_updates,id,bigint,NO,nextval('work_updates_id_seq'::regclass),retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,employee_id,bigint,NO,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,work_date,date,NO,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,project_id,bigint,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,task_id,bigint,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,work_category,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,work_description,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,start_time,timestamp without time zone,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,end_time,timestamp without time zone,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,time_spent_minutes,bigint,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,progress_percentage,integer,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,work_completed,boolean,NO,false,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,challenges,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,blockers,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,next_steps,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,attachment_url,character varying,YES,,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,status,character varying,NO,'DRAFT'::character varying,retain,The reachable work-update screen.,com/chronis/workupdate/domain/WorkUpdate.java
+work_updates,created_by,character varying,YES,,retain,The reachable work-update screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_updates,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable work-update screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_updates,updated_by,character varying,YES,,retain,The reachable work-update screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_updates,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,retain,The reachable work-update screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
+work_updates,version,bigint,NO,0,retain,The reachable work-update screen.,com/chronis/common/audit/BaseEntity.java (JPA entities where applicable)
